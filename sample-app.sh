@@ -1,4 +1,5 @@
 #!/bin/bash
+USER root
 
 mkdir tempdir
 mkdir tempdir/templates
@@ -17,6 +18,7 @@ echo "EXPOSE 5050" >> tempdir/Dockerfile
 echo "CMD python /home/myapp/assessment_code.py" >> tempdir/Dockerfile
 
 cd tempdir
+chmod 666 /var/run/docker.sock
 docker build -t dockerapp .
 docker run -t -d -p 5050:5050 --name samplerunning dockerapp
 docker ps -a 
